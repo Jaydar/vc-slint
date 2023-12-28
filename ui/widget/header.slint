@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 
 
-import { HorizontalBox,VerticalBox , Button} from "std-widgets.slint";
-import { Btn } from "../compiler/button.slint";
+import { HorizontalBox,VerticalBox  } from "std-widgets.slint";
+import { Button } from "../compiler/fluent/button.slint";
 
 
 export component Header inherits HorizontalLayout {
@@ -43,11 +43,12 @@ export component Header inherits HorizontalLayout {
       width: 50px;
       VerticalLayout {
         alignment: center;
-        Btn{
-          width: 32px;
-          height: 32px;
-          border-radius: 5px;
+        Button{
+          width: 30px;
+          height: 30px;
+          // border-radius: 5px;
           icon: @image-url("../assets/menu.svg") ;
+          text: "";
         }
       }
     }

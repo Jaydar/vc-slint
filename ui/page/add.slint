@@ -1,5 +1,5 @@
 import {  VerticalBox ,LineEdit, HorizontalBox} from "std-widgets.slint";
-import { Btn } from "../compiler/button.slint";
+import { Button } from "../compiler/fluent/button.slint";
 
 export component AddPage {
     VerticalBox {
@@ -7,12 +7,12 @@ export component AddPage {
         HorizontalBox {
             padding: 0px;
             spacing: 10px;
-            Btn {
-                border-radius: 5px;
+            Button {
+                // border-radius: 5px;
                 text:"设置封面";
             }
-            Btn {
-                border-radius: 5px;
+            Button {
+                // border-radius: 5px;
                 text:"选择视频";
             }
         }

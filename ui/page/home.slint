@@ -1,26 +1,25 @@
 import {  VerticalBox ,LineEdit, HorizontalBox,StandardTableView,GroupBox} from "std-widgets.slint";
-import { Btn } from "../compiler/button.slint";
-import {MaterialFontSettings, MaterialPalette,Elevation } from "../theme.slint";
+import { Button } from "../compiler/fluent/button.slint";
+import { StandardTableView } from "../compiler/fluent/tableview.slint";
+import { FluentPalette } from "../compiler/fluent/styling.slint";
+import { MaterialFontSettings, MaterialPalette,Elevation } from "../theme.slint";
 export component HomePage inherits VerticalLayout {
     padding: 0px;
     height: 518px;
     spacing: 10px;
 
-    Btn {
-        height: 40px;
-        border-radius: 5px;
+    Button {
+        
         text:"添加任务";
     }
-    Btn {
-        height: 40px;
-        border-radius: 5px;
+    Button {
         text:"开始任务";
     }
     
         
     Rectangle  {
         border-radius: 5px;
-        border-color: MaterialPalette.border;
+        border-color: FluentPalette.border;
         border-width: 1px;
         // Text {text: "1111111111111111111111111111111111111111111123";}
         VerticalLayout {
@@ -31,8 +30,9 @@ export component HomePage inherits VerticalLayout {
                 padding: 0px;
                 width: 100%;
                 columns: [
-                    { title: "Header 1",horizontal_stretch:1 },
-                    { title: "speed",width:50px, },
+                    { title: "文件", horizontal_stretch:1 },
+                    { title: "进度", horizontal_stretch:1 },
+                    { title: "操作", horizontal_stretch:1 },
                 ];
                 rows: [
                     [
@@ -85,5 +85,6 @@ export component HomePage inherits VerticalLayout {
         }
 
     }
+    Button {text: "123";}
     
 }
