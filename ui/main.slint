@@ -1,0 +1,46 @@
+import {  VerticalBox , HorizontalBox,StandardTableView, Button} from "std-widgets.slint";
+import { Btn } from "./compiler/button.slint";
+import { Header } from "./widget/header.slint";
+import { LineEdit } from "./compiler/lineedit.slint" ;
+import { MaterialPalette,MaterialFontSettings } from "theme.slint" ;
+import { HomePage } from "page/home.slint";
+import { AddPage } from "page/add.slint";
+
+
+global AppData {
+    in-out property <string> router: "home";
+}
+
+
+
+export component MainWindow inherits Window {
+    title: "VC Slint";
+    
+    width: 320px;
+    height: 568px;
+    default-font-size: 14px;
+    icon: @image-url("./assets/slint.png");
+    
+    padding: 0px;
+
+
+    in-out property router <=> AppData.router;
+    
+
+    VerticalLayout{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 0px;
+        padding-bottom: 5px;
+        alignment: start;
+        spacing: 0px;
+        Header {}
+        if(router == "home") : HomePage {}
+        // if(router == "add") : AddPage {}
+    }
+
+
+
+
+
+}

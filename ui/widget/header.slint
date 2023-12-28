@@ -1,0 +1,58 @@
+// Copyright © SixtyFPS GmbH <info@slint.dev>
+// SPDX-License-Identifier: MIT
+
+
+import { HorizontalBox,VerticalBox , Button} from "std-widgets.slint";
+import { Btn } from "../compiler/button.slint";
+
+
+export component Header inherits HorizontalLayout {
+  height: 50px;
+  padding: 0px;
+
+  
+
+
+    
+
+    // alignment: space-between;
+
+    Rectangle {
+      width: 50px;
+      horizontal-stretch:1;
+      Text {
+        text: "";
+      }
+    }
+
+
+    Rectangle {
+      horizontal-stretch:3;
+      
+      Text {
+        font-size: 18px;
+        font-weight: 700;
+        font-italic: false;
+        text: "Video Cover";
+      }
+    }
+
+    HorizontalLayout {
+      horizontal-stretch:1;
+      alignment: end;
+      width: 50px;
+      VerticalLayout {
+        alignment: center;
+        Btn{
+          width: 32px;
+          height: 32px;
+          border-radius: 5px;
+          icon: @image-url("../assets/menu.svg") ;
+        }
+      }
+    }
+  
+
+  
+    
+}
