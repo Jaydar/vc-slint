@@ -1,15 +1,12 @@
 import {  VerticalBox , HorizontalBox,StandardTableView, Button} from "std-widgets.slint";
 import { Button } from "./compiler/fluent/button.slint";
-import { Header } from "./widget/header.slint";
+import { Header } from "./widget/Header.slint";
+import { SideBar } from "./widget/SideBar.slint";
 
-import { MaterialPalette,MaterialFontSettings } from "theme.slint" ;
-import { HomePage } from "page/home.slint";
-import { AddPage } from "page/add.slint";
-
-
-global AppData {
-    in-out property <string> router: "home";
-}
+import { HomePage } from "page/HomePage.slint";
+import { AddPage } from "page/AddPage.slint";
+import { AppData } from "./store.slint";
+import { Page } from "widget/Page.slint";
 
 
 
@@ -34,13 +31,19 @@ export component MainWindow inherits Window {
         padding-bottom: 5px;
         alignment: start;
         spacing: 0px;
+
         Header {}
-        if(router == "home") : HomePage {}
-        // if(router == "add") : AddPage {}
+        Rectangle {
+            height: 518px;
+            HomePage { x: 0;}
+            AddPage { x: root.width;}
+        }
+
+        // AddPage { isShow: router == "add";}
     }
 
-
-
-
-
+    side-bar := SideBar {
+        title: "Menu";
+        model: ["Controls"];
+    }
 }

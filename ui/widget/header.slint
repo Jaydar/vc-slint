@@ -4,56 +4,54 @@
 
 import { HorizontalBox,VerticalBox  } from "std-widgets.slint";
 import { Button } from "../compiler/fluent/button.slint";
-
+import { AppData } from "../store.slint";
 
 export component Header inherits HorizontalLayout {
-  height: 50px;
-  padding: 0px;
-
-  
-
-
-    
-
-    // alignment: space-between;
-
-    Rectangle {
-      width: 50px;
-      horizontal-stretch:1;
-      Text {
-        text: "";
-      }
+    height: 50px;
+   
+    HorizontalLayout {
+        horizontal-stretch:1;
+        alignment: start;
+        width: 50px;
+        VerticalLayout {
+            alignment: center;
+            Button{
+                width: 30px;
+                height: 30px;
+                // border-radius: 5px;
+                icon: @image-url("../assets/svg/menu.svg") ;
+                text: "";
+            }
+        }
     }
 
 
     Rectangle {
-      horizontal-stretch:3;
-      
-      Text {
-        font-size: 18px;
-        font-weight: 700;
-        font-italic: false;
-        text: "Video Cover";
-      }
+        horizontal-stretch:3;
+        
+        Text {
+            font-size: 18px;
+            font-weight: 700;
+            font-italic: false;
+            text: "Video Cover";
+        }
     }
 
     HorizontalLayout {
-      horizontal-stretch:1;
-      alignment: end;
-      width: 50px;
-      VerticalLayout {
+        horizontal-stretch:1;
+        alignment: end;
+        width: 50px;
+        VerticalLayout {
         alignment: center;
-        Button{
-          width: 30px;
-          height: 30px;
-          // border-radius: 5px;
-          icon: @image-url("../assets/menu.svg") ;
-          text: "";
+            Button{
+                width: 30px;
+                height: 30px;
+                // border-radius: 5px;
+                icon: @image-url("../assets/svg/add.svg") ;
+                text: "";
+                clicked => { AppData.router = "add" }
+            }
         }
-      }
     }
-  
 
-  
-    
 }

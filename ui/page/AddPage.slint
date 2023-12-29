@@ -1,15 +1,20 @@
 import {  VerticalBox ,LineEdit, HorizontalBox} from "std-widgets.slint";
 import { Button } from "../compiler/fluent/button.slint";
+import { AppData } from "../store.slint";
+import { Page } from "../widget/Page.slint";
+export component AddPage inherits Page {
+    VerticalLayout{
+    in property <bool> isShow : true;
+    visible: isShow;
 
-export component AddPage {
-    VerticalBox {
-        padding: 0px;
+
         HorizontalBox {
             padding: 0px;
             spacing: 10px;
             Button {
                 // border-radius: 5px;
                 text:"设置封面";
+                clicked => { AppData.router = "home" }
             }
             Button {
                 // border-radius: 5px;
