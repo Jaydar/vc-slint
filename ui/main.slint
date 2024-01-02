@@ -1,12 +1,13 @@
 import {  VerticalBox , HorizontalBox,StandardTableView, Button} from "std-widgets.slint";
-import { Button } from "./compiler/fluent/button.slint";
+import { Button } from "./base/fluent/button.slint";
 import { Header } from "./widget/Header.slint";
 import { SideBar } from "./widget/SideBar.slint";
 
-import { HomePage } from "page/HomePage.slint";
-import { AddPage } from "page/AddPage.slint";
+import { HomePage, AddPage, AboutPage } from "./page/index.slint";
+
 import { AppData } from "./store.slint";
 import { Page } from "widget/Page.slint";
+import { Router } from "./widget/Router.slint";
 
 
 
@@ -33,13 +34,22 @@ export component MainWindow inherits Window {
         spacing: 0px;
 
         Header {}
-        Rectangle {
+        
+        Router {
             height: 518px;
-            HomePage { x: 0;}
-            AddPage { x: root.width;}
+            HomePage {
+                cache: true;
+                router: "home";
+            }
+            AddPage {
+                cache: true;
+                router: "add";
+            }
+            AboutPage {
+                cache: false;
+                router: "about";
+            }
         }
-
-        // AddPage { isShow: router == "add";}
     }
 
     side-bar := SideBar {

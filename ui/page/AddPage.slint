@@ -1,12 +1,11 @@
 import {  VerticalBox ,LineEdit, HorizontalBox} from "std-widgets.slint";
-import { Button } from "../compiler/fluent/button.slint";
+import { Button } from "../base/fluent/button.slint";
 import { AppData } from "../store.slint";
 import { Page } from "../widget/Page.slint";
-export component AddPage inherits Page {
-    VerticalLayout{
-    in property <bool> isShow : true;
-    visible: isShow;
 
+export component AddPage inherits Page {
+
+    VerticalLayout{
 
         HorizontalBox {
             padding: 0px;

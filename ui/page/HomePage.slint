@@ -1,92 +1,89 @@
 import {  VerticalBox ,LineEdit, HorizontalBox,StandardTableView,GroupBox} from "std-widgets.slint";
-import { Button } from "../compiler/fluent/button.slint";
-import { StandardTableView } from "../compiler/fluent/tableview.slint";
-import { FluentPalette } from "../compiler/fluent/styling.slint";
+import { Button } from "../base/fluent/button.slint";
+import { StandardTableView } from "../base/fluent/tableview.slint";
+import { FluentPalette } from "../base/fluent/styling.slint";
 import { Page } from "../widget/Page.slint";
 
 export component HomePage inherits Page {
     VerticalLayout{
-    in property <bool> isShow : true;
-    
-    visible: isShow;
-    padding: 0px;
-    height: 100%;
-    // spacing: 10px;
+        padding: 0px;
+        height: 100%;
+        // spacing: 10px;
 
-    spacing: 10px;
+        spacing: 10px;
 
-    Button {
-        text:"开始任务";
-    }
-        
-    Rectangle  {
-        border-radius: 5px;
-        border-color: FluentPalette.border;
-        border-width: 1px;
-        // Text {text: "1111111111111111111111111111111111111111111123";}
-        VerticalLayout {
-            padding: 10px;
-            // height: 100%;
-            StandardTableView {
+        Button {
+            text:"开始任务";
+        }
+            
+        Rectangle  {
+            border-radius: 5px;
+            border-color: FluentPalette.border;
+            border-width: 1px;
+            // Text {text: "1111111111111111111111111111111111111111111123";}
+            VerticalLayout {
+                padding: 10px;
                 // height: 100%;
-                padding: 0px;
-                width: 100%;
-                columns: [
-                    { title: "文件", horizontal_stretch:4 },
-                    { title: "进度", horizontal_stretch:3 },
-                    { title: "操作", horizontal_stretch:2 },
-                ];
-                rows: [
-                    [
-                        { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
-                    ],
-                    [
-                        { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
-                    ],
-                    [
-                        { text: "Item 3" }, { text: "Item 3" },{ text: "Item 3" }
-                    ],
-                    [
-                        { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
-                    ],
-                    [
-                        { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
-                    ],
-                    [
-                        { text: "Item 3" }, { text: "Item 3" },{ text: "Item 3" }
-                    ],
-                    [
-                        { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
-                    ],
-                    [
-                        { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
-                    ],
-                    [
-                        { text: "Item 3" }, { text: "Item 3" },{ text: "Item 3" }
-                    ],
-                    [
-                        { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
-                    ],
-                    [
-                        { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
-                    ],
-                    [
-                        { text: "Item 3" }, { text: "Item 3" },{ text: "Item 3" }
-                    ],
-                    [
-                        { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
-                    ],
-                    [
-                        { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
-                    ],
-                    [
-                        { text: "Item 3" }, { text: "Item 31" },{ text: "Item 11111111111111111111111111 3" },
-                    ]
-                ];
+                StandardTableView {
+                    // height: 100%;
+                    padding: 0px;
+                    width: 100%;
+                    columns: [
+                        { title: "文件", horizontal_stretch:4 },
+                        { title: "进度", horizontal_stretch:3 },
+                        { title: "操作", horizontal_stretch:2 },
+                    ];
+                    rows: [
+                        [
+                            { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
+                        ],
+                        [
+                            { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
+                        ],
+                        [
+                            { text: "Item 3" }, { text: "Item 3" },{ text: "Item 3" }
+                        ],
+                        [
+                            { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
+                        ],
+                        [
+                            { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
+                        ],
+                        [
+                            { text: "Item 3" }, { text: "Item 3" },{ text: "Item 3" }
+                        ],
+                        [
+                            { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
+                        ],
+                        [
+                            { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
+                        ],
+                        [
+                            { text: "Item 3" }, { text: "Item 3" },{ text: "Item 3" }
+                        ],
+                        [
+                            { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
+                        ],
+                        [
+                            { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
+                        ],
+                        [
+                            { text: "Item 3" }, { text: "Item 3" },{ text: "Item 3" }
+                        ],
+                        [
+                            { text: "Item 1" }, { text: "Item 1" },{ text: "Item 1" }
+                        ],
+                        [
+                            { text: "Item 2" }, { text: "Item 2" },{ text: "Item 2" }
+                        ],
+                        [
+                            { text: "Item 3" }, { text: "Item 31" },{ text: "Item 11111111111111111111111111 3" },
+                        ]
+                    ];
+                }
             }
+
         }
 
     }
-
-}
 }
