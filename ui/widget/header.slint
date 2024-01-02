@@ -7,6 +7,8 @@ import { Button } from "../base/fluent/button.slint";
 import { AppData } from "../store.slint";
 
 export component Header inherits HorizontalLayout {
+
+
     height: 50px;
    
     HorizontalLayout {
@@ -15,7 +17,8 @@ export component Header inherits HorizontalLayout {
         width: 50px;
         VerticalLayout {
             alignment: center;
-            Button{
+
+            if (AppData.router == "home"): Button{
                 width: 30px;
                 height: 30px;
                 // border-radius: 5px;
@@ -26,6 +29,19 @@ export component Header inherits HorizontalLayout {
                     AppData.router = "home" 
                 }
             }
+
+            if (AppData.router != "home"): Button{
+                width: 30px;
+                height: 30px;
+                // border-radius: 5px;
+                icon: @image-url("../assets/svg/arrow_back_ios_new.svg") ;
+                text: "";
+                clicked => { 
+                    debug("111");
+                    AppData.router = "home" 
+                }
+            }
+
         }
     }
 
