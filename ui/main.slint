@@ -38,15 +38,12 @@ export component MainWindow inherits Window {
         Router {
             height: 518px;
             HomePage {
-                cache: true;
                 router: "home";
             }
             AddPage {
-                cache: true;
                 router: "add";
             }
             AboutPage {
-                cache: false;
                 router: "about";
             }
         }

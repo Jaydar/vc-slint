@@ -21,6 +21,10 @@ export component Header inherits HorizontalLayout {
                 // border-radius: 5px;
                 icon: @image-url("../assets/svg/menu.svg") ;
                 text: "";
+                clicked => { 
+                    debug("111");
+                    AppData.router = "home" 
+                }
             }
         }
     }

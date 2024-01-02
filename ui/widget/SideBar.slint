@@ -52,7 +52,7 @@ component SideBarItem inherits Rectangle {
     }
 }
 
-export component SideBar inherits Rectangle {
+ export component SideBar inherits Rectangle {
     in property <[string]> model: [];
     in property <string> title <=> label.text;
     out property <int> current-item: 0;
