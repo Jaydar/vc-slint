@@ -1,16 +1,17 @@
-use std::{fs, io::Write};
-
+use dirs;
 use rust_embed::RustEmbed;
+use std::{fs, io::Write};
 
 #[derive(RustEmbed)]
 #[folder = "./vendor/"]
 struct Vendor;
 
+use crate::tools;
+
 pub async fn init() {
-    // 获取系统临时目录
-    let temp_dir_path = std::env::temp_dir();
-    // 合并临时目录和文件路径，并检查文件是否存在，如果不存在则提取
-    let ffmpeg_path = temp_dir_path.join("temp_video_cover").join("ffmpeg.exe");
+    let data = tools::parse_cargo_toml().unwrap();
+    let app_name = data.get("name").and_then(|value| value.as_str()).unwrap();
+    let ffmpeg_path = dirs::home_dir().unwrap().join(app_name).join("ffmpeg.exe");
 
     // 判断文件是否存在
     if !ffmpeg_path.exists() {
@@ -20,5 +21,4 @@ pub async fn init() {
         let mut file = fs::File::create(&ffmpeg_path).unwrap();
         file.write_all(ffmpeg_binary.data.as_ref()).unwrap();
     }
-
 }

@@ -5,6 +5,7 @@ use windows_sys::Win32::UI::WindowsAndMessaging::GetSystemMetrics;
 use winit::dpi::LogicalPosition;
 
 mod app;
+mod tools;
 
 slint::include_modules!();
 
