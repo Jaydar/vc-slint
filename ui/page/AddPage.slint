@@ -1,51 +1,168 @@
-import {  VerticalBox ,LineEdit, HorizontalBox} from "std-widgets.slint";
+import {  VerticalBox, LineEdit, HorizontalBox, ComboBox, ScrollView,SpinBox, CheckBox} from "std-widgets.slint";
 import { Button } from "../base/fluent/button.slint";
 import { AppData } from "../store.slint";
 import { Page } from "../widget/Page.slint";
 
 export component AddPage inherits Page {
 
-    VerticalLayout{
+    in property <int> cover-mode : 0;
 
-        HorizontalBox {
-            padding: 0px;
+    ScrollView {
+        width: 100%;
+        height: 100%;
+        vertical-stretch: 1;
+        VerticalLayout{
             spacing: 10px;
-            Button {
-                // border-radius: 5px;
-                text:"设置封面";
-                clicked => { AppData.router = "home" }
+            vertical-stretch: 1;
+            if (cover-mode == 0): HorizontalLayout{
+                height: 32px;
+                width: 100%;
+                spacing: 10px;
+                Text {
+                    vertical-alignment: center;
+                    font-size: 13px;
+                    font-weight: 400;
+                    text: "选择模式:";
+                }
+                ComboBox{
+                    width: 100%;
+                    height: 32px;
+                    model: ["使用文字","使用图片"];
+                    current-index: cover-mode;
+                }
             }
-            Button {
-                // border-radius: 5px;
-                text:"选择视频";
+
+            Rectangle {
+                height: 5px;
             }
+
+
+            if (cover-mode == 0): HorizontalLayout{
+                height: 32px;
+                width: 100%;
+                spacing: 10px;
+                Text {
+                    vertical-alignment: center;
+                    font-size: 13px;
+                    font-weight: 400;
+                    text: "文字封面:";
+                }
+                LineEdit {
+                    placeholder-text: "请输入封面文字";
+                    enabled:true;
+                }
+            }
+
+            if (cover-mode == 0): HorizontalLayout{
+                height: 32px;
+                width: 100%;
+                spacing: 10px;
+                Text {
+                    vertical-alignment: center;
+                    font-size: 13px;
+                    font-weight: 400;
+                    text: "选择字体:";
+                }
+                ComboBox{
+                    width: 100%;
+                    height: 32px;
+                    model: ["黑体","宋体","楷体"];
+                    current-index: cover-mode;
+                }
+            }
+            
+            if (cover-mode == 0): HorizontalLayout{
+                height: 32px;
+                width: 100%;
+                spacing: 10px;
+                Text {
+                    vertical-alignment: center;
+                    font-size: 13px;
+                    font-weight: 400;
+                    text: "设置字号:";
+                }
+                SpinBox {
+                    enabled: true;
+                    width: 100%;
+                    height: 32px;
+                    value: 18;
+                }
+            }
+
+            if (cover-mode == 0): HorizontalLayout{
+                height: 32px;
+                width: 100%;
+                spacing: 10px;
+                Text {
+                    vertical-alignment: center;
+                    font-size: 13px;
+                    font-weight: 400;
+                    text: "文字颜色:";
+                }
+                SpinBox {
+                    enabled: true;
+                    width: 100%;
+                    height: 32px;
+                    value: 18;
+                }
+            }
+
+            if (cover-mode == 0): HorizontalLayout{
+                height: 32px;
+                width: 100%;
+                spacing: 10px;
+                Text {
+                    vertical-alignment: center;
+                    font-size: 13px;
+                    font-weight: 400;
+                    text: "持续时间:";
+                }
+                SpinBox {
+                    enabled: true;
+                    width: 100%;
+                    height: 32px;
+                    value: 3;
+                }
+            }
+
+
+            Rectangle {
+                height: 5px;
+            }
+
+            if (cover-mode == 0): VerticalLayout {
+                spacing: 10px;
+                // height: 64px;
+                HorizontalLayout{
+                    height: 32px;
+                    width: 100%;
+                    spacing: 10px;
+                    Text {
+                        vertical-alignment: center;
+                        font-size: 13px;
+                        font-weight: 400;
+                        text: "选择视频:";
+                    }
+                    Button {
+                        horizontal-stretch: 1;
+                        height: 32px;
+                        text: "文件";
+                        icon: @image-url("../assets/svg/file.svg");
+                    }
+                    Button {
+                        horizontal-stretch: 1;
+                        height: 32px;
+                        text: "文件夹";
+                        icon: @image-url("../assets/svg/folder.svg");
+                    }
+                }
+                LineEdit {
+                    height: 32px;
+                }
+            }
+            
         }
-    
-        Text {
-            font-size: 12px;
-            text: "123";
-            wrap: no-wrap;
-            width: 300px;
-            height: 14px;
-        }
-
-    
-        LineEdit {       
-            height: 40px;
-            enabled:true;
-        }
-
-
-
-        popup := PopupWindow {
-            Rectangle { height:100%; width: 100%; background: yellow; }
-            x: 20px; y: 20px; height: 50px; width: 50px;
-        }
-
-        TouchArea {
-            // height:100%; width: 100%;
-            clicked => { popup.show(); }
-        }
-
     }
+    
+
 }

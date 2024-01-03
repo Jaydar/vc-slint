@@ -25,8 +25,7 @@ export component Header inherits HorizontalLayout {
                 icon: @image-url("../assets/svg/menu.svg") ;
                 text: "";
                 clicked => { 
-                    debug("111");
-                    AppData.router = "home" 
+                    AppData.is-show-side-bar = true
                 }
             }
 
@@ -37,7 +36,6 @@ export component Header inherits HorizontalLayout {
                 icon: @image-url("../assets/svg/arrow_back_ios_new.svg") ;
                 text: "";
                 clicked => { 
-                    debug("111");
                     AppData.router = "home" 
                 }
             }

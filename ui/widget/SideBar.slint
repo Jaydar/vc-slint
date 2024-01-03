@@ -2,6 +2,12 @@
 // SPDX-License-Identifier: MIT
 
 import { StyleMetrics , VerticalBox} from "std-widgets.slint";
+import { AppData } from "../store.slint";
+
+struct SideBarItem {
+    name: string,
+    router: string
+}
 
 component SideBarItem inherits Rectangle {
     in property <bool> selected;
@@ -53,7 +59,7 @@ component SideBarItem inherits Rectangle {
 }
 
 export component SideBar inherits Rectangle {
-    in property <[string]> model: [];
+    in property <[SideBarItem]> model: [];
     in property <string> title <=> label.text;
     out property <int> current-item: 0;
     in-out property <bool> isShow;
@@ -62,7 +68,7 @@ export component SideBar inherits Rectangle {
     y:0;
     padding: 0px;
     width: 100%;
-    visible: true;
+    visible <=> AppData.is-show-side-bar;
 
     opacity: 1;
 
@@ -94,12 +100,16 @@ export component SideBar inherits Rectangle {
                 vertical-alignment:center;
             }
     
-            navigation := VerticalLayout {
+            VerticalLayout {
                 alignment: start;
                 vertical-stretch: 0;
                 for item[index] in root.model : SideBarItem {
-                    clicked => { root.current-item = index; }
-                    text: item;
+                    clicked => { 
+                        root.current-item = index;
+                        AppData.router = item.router;
+                        AppData.is-show-side-bar = false;
+                    }
+                    text: item.name;
                 }
             }
         }

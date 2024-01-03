@@ -38,10 +38,10 @@ export component MainWindow inherits Window {
         Router {
             height: 518px;
             HomePage {
-                router: "home";
+                router: "add";
             }
             AddPage {
-                router: "add";
+                router: "home";
             }
             AboutPage {
                 router: "about";
@@ -51,6 +51,9 @@ export component MainWindow inherits Window {
 
     side-bar := SideBar {
         title: "Menu";
-        model: ["Home","About"];
+        model: [
+            { name:"Home", router: "home" },
+            { name:"About", router: "about" }
+        ];
     }
 }
