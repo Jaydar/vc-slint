@@ -7,6 +7,8 @@ import { FocusBorder } from "./components.slint";
 export component Button {
     in property <string> text;
     in property <image> icon;
+    in property <length> icon-width:20px;
+    in property <length> icon-spacing:5px;
     in property <bool> primary;
     in property <bool> enabled <=> i-touch-area.enabled;
     in property <bool> checkable;
@@ -14,7 +16,7 @@ export component Button {
     out property <bool> has-focus: i-focus-scope.has-focus;
     out property <bool> pressed: self.enabled && i-touch-area.pressed;
     in-out property <bool> checked;
-
+    
     callback clicked;
 
     private property <brush> text-color: primary || checked ? FluentPalette.accent-foreground : FluentPalette.control-foreground;
@@ -66,13 +68,13 @@ export component Button {
             // padding-top: 5px;
             // padding-bottom: 5px;
             // padding: 5px;
-            // spacing: 4px;
+            spacing: icon-spacing;
             alignment: center;
 
             if (root.icon.width > 0 && root.icon.height > 0) : Image {
                 y: (parent.height - self.height) / 2;
                 source <=> root.icon;
-                width: 20px;
+                width: icon-width;
                 colorize: root.colorize-icon ? root.text-color : transparent;
             }
 
