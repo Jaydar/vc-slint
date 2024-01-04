@@ -38,6 +38,7 @@ export component ComboBox {
         }
     ]
 
+    
     i-base := ComboBoxBase {
         width: 100%;
         height: 100%;
@@ -60,7 +61,7 @@ export component ComboBox {
             padding-right: 11px;
             spacing: 8px;
 
-            i-text := Text {
+            i-text := TextInput {
                 horizontal-alignment: left;
                 vertical-alignment: center;
                 font-size: FluentFontSettings.body.font-size;
@@ -89,7 +90,7 @@ export component ComboBox {
         x: 0;
         // Position the popup so that the first element is over the popup.
         // Ideally it should be so that the current element is over the popup.
-        y: -4px;
+        y: root.height;
         width: root.width;
 
         MenuBorder {
@@ -97,6 +98,8 @@ export component ComboBox {
                 padding: 4px;
 
                 for value[index] in root.model : ListItem {
+                    height: root.height;
+                    width: root.width;
                     item: { text: value };
                     is-selected: index == root.current-index;
                     has-hover: i-touch-area.has-hover;
