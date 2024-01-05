@@ -2,6 +2,7 @@ import { VerticalBox, LineEdit, HorizontalBox, ScrollView,SpinBox, CheckBox, Sty
 
 import { Button } from "../base/fluent/button.slint";
 import { ComboBox } from "../base/fluent/combobox.slint";
+import { ColorComboBox } from "../base/fluent/color-combobox.slint";
 import { AppData } from "../store.slint";
 import { Page } from "../widget/Page.slint";
 
@@ -110,11 +111,10 @@ export component AddPage inherits Page {
                     font-weight: 400;
                     text: "文字颜色:";
                 }
-                SpinBox {
+                ColorComboBox {
                     enabled: true;
-                    width: 100%;
                     height: 32px;
-                    value: 18;
+                    model: [#fff,#ff8,#f8f,#8fff];
                 }
             }
 

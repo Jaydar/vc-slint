@@ -1,6 +1,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] 
 
 use i_slint_backend_winit::WinitWindowAccessor;
+use slint::{SharedString, Color};
 use windows_sys::Win32::UI::WindowsAndMessaging::GetSystemMetrics;
 use winit::dpi::LogicalPosition;
 
@@ -31,5 +32,15 @@ async fn main() {
             ww.set_enabled_buttons(buttons ^ winit::window::WindowButtons::MAXIMIZE);
         });
    
+    main.global::<ColorComboBoxAdapter>().on_string_color(|value:SharedString| {
+        // value.
+        return Color::default();
+    });
+    main.global::<ColorComboBoxAdapter>().on_color_string(|value:Color| {
+        let hex = format!("#{:02x}{:02x}{:02x}{:02x}", value.red(), value.green(), value.blue(), value.alpha());
+        let mut ss = SharedString::default();
+        ss.push_str(hex.as_str());
+        return ss;
+    });
     main.run().unwrap();
 }
