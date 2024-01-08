@@ -2,16 +2,18 @@ import {  VerticalBox , HorizontalBox,StandardTableView, Button} from "std-widge
 import { Button } from "./base/fluent/button.slint";
 import { Header } from "./widget/Header.slint";
 import { SideBar } from "./widget/SideBar.slint";
-import { ColorComboBoxAdapter } from "./base/fluent/color-combobox.slint";
+
 
 import { HomePage, AddPage, AboutPage } from "./page/index.slint";
 
 import { AppData } from "./store.slint";
+import { bridge } from "./bridge.slint";
+
 import { Page } from "widget/Page.slint";
 import { Router } from "./widget/Router.slint";
 
 
-export { ColorComboBoxAdapter }
+export { bridge }
 
 export component MainWindow inherits Window {
     title: "VC Slint";

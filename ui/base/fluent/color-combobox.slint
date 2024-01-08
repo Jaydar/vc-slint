@@ -4,11 +4,8 @@
 import { FluentFontSettings, FluentPalette, Icons } from "styling.slint";
 import { MenuBorder, ListItem, FocusBorder } from "components.slint";
 import { ComboBoxBase } from "./common/combobox-color.slint";
+import { bridge } from "../../bridge.slint";
 
-export global ColorComboBoxAdapter {
-    pure callback color_string(color) -> string;
-    pure callback string_color(string) -> color;
-}
 
 export component ColorComboBox {
     in property <[color]> model <=> i-base.model;
@@ -69,9 +66,6 @@ export component ColorComboBox {
             padding-left: 11px;
             padding-right: 7px;
             spacing: 8px;
-            VerticalLayout {
-
-            }
 
             i-text := TextInput {
                 horizontal-alignment: left;
@@ -79,16 +73,25 @@ export component ColorComboBox {
                 font-size: FluentFontSettings.body.font-size;
                 font-weight: FluentFontSettings.body.font-weight;
                 color: FluentPalette.control-foreground;
-                text: ColorComboBoxAdapter.color-string(root.current-value);
+                text: bridge.color-to-string(root.current-value);
+
+                edited() => {
+                    debug(bridge.string-to-color(i-text.text));
+                    i-icon.background = bridge.string-to-color(i-text.text);
+                }
             }
 
-            VerticalLayout {
+            i-color := VerticalLayout {
                 alignment: center;
                 i-icon := Rectangle{
                     width: 16px;
                     height: 16px;
+                    border-color: FluentPalette.foreground;
+                    padding: 1px;
+                    border-width: 1px;
+
                     // y: 2px;
-                    background: ColorComboBoxAdapter.string-color(i-text.text);
+                    // background: bridge.string-to-color(i-text.text);
                 }    
             }
 
@@ -120,7 +123,8 @@ export component ColorComboBox {
                     i-touch-area := TouchArea {
                         clicked => {
                             i-base.select(index);
-                            i-text.text = ColorComboBoxAdapter.color-string(root.current-value)
+                            i-text.text = bridge.color-to-string(root.current-value)
+                            // i-icon.background = bridge.string-to-color(i-text.text);
                         }
                     }
                 }
