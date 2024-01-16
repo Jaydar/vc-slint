@@ -10,7 +10,6 @@ import { AppData } from "./store.slint";
 import { bridge } from "./bridge.slint";
 
 import { Page } from "widget/Page.slint";
-import { Router } from "./widget/Router.slint";
 
 
 export { bridge }
@@ -35,11 +34,11 @@ export component MainWindow inherits Window {
         padding-top: 0px;
         padding-bottom: 5px;
         alignment: start;
-        spacing: 0px;
+        spacing: 5px;
 
         Header {}
         
-        Router {
+        Rectangle {
             height: 518px;
             HomePage {
                 router: "add";

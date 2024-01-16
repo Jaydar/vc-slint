@@ -3,9 +3,7 @@ export component Page inherits Rectangle {
     in property <bool> default: false;
     in property <bool> cache: false;
     in property <string> router: "home";
-
+    
     visible: AppData.router == router;
-    height: 518px;
-
     @children
 }

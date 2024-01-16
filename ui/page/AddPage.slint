@@ -1,4 +1,4 @@
-import { VerticalBox, LineEdit, HorizontalBox, ScrollView,SpinBox, CheckBox, StyleMetrics } from "std-widgets.slint";
+import { VerticalBox, LineEdit, HorizontalBox, ScrollView, SpinBox, CheckBox, StyleMetrics } from "std-widgets.slint";
 
 import { Button } from "../base/fluent/button.slint";
 import { ComboBox } from "../base/fluent/combobox.slint";
@@ -12,7 +12,8 @@ export component AddPage inherits Page {
     in-out property <string> cover-text: "";
     in-out property <string> cover-family: "";
     in-out property <int> cover-size: 18;
-    in-out property <string> cover-color: "#f34235";
+    in-out property <color> cover-color: #f34235;
+    in-out property <color> cover-bg-color: #363f45;
     in-out property <int> cover-duration: 3;
     in-out property <string> cover-path: "";
     in-out property <string> video-path: "";
@@ -95,7 +96,6 @@ export component AddPage inherits Page {
                 }
                 SpinBox {
                     enabled: true;
-                    width: 100%;
                     height: 32px;
                     value: root.cover-size;
                 }
@@ -114,9 +114,29 @@ export component AddPage inherits Page {
                 ColorComboBox {
                     enabled: true;
                     height: 32px;
-                    model: [#fff,#ff8,#f8f,#8fff];
+                    model: [#f34235,#e81d62,#363f45,#9b26af,#6639b6,#3e50b4,#2095f2,#02a8f3,#00bbd3,#009587,#4bae4f,#8ac249,#ccdb38,#feea3a,#fec006,#fe9700,#fe5621,#785447,#9d9d9d,#5f7c8a];
+                    current-value: root.cover-color;
                 }
             }
+
+            if (cover-mode == 0): HorizontalLayout{
+                height: 32px;
+                width: 100%;
+                spacing: 10px;
+                Text {
+                    vertical-alignment: center;
+                    font-size: 13px;
+                    font-weight: 400;
+                    text: "背景颜色:";
+                }
+                ColorComboBox {
+                    enabled: true;
+                    height: 32px;
+                    model: [#f34235,#e81d62,#363f45,#9b26af,#6639b6,#3e50b4,#2095f2,#02a8f3,#00bbd3,#009587,#4bae4f,#8ac249,#ccdb38,#feea3a,#fec006,#fe9700,#fe5621,#785447,#9d9d9d,#5f7c8a];
+                    current-value: root.cover-bg-color;
+                }
+            }
+
 
             if (cover-mode == 1): VerticalLayout {
                 spacing: 5px;
@@ -161,9 +181,8 @@ export component AddPage inherits Page {
                 }
                 SpinBox {
                     enabled: true;
-                    width: 100%;
                     height: 32px;
-                    value: 3;
+                    value: cover-duration;
                 }
             }
 
@@ -209,8 +228,19 @@ export component AddPage inherits Page {
                 }
             }
             
+
+            Rectangle {
+                height: 5px;
+            }
+
+            Button {
+                text: "添加任务";
+                height: 40px;
+                icon-width: 28px;
+                icon-spacing: 10px;
+                icon: @image-url("../assets/svg/add_circle.svg");
+            }
         }
     }
-    
 
 }

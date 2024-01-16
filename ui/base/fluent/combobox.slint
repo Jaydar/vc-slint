@@ -81,11 +81,6 @@ export component ComboBox {
         }
     }
 
-    // focus border
-    if (root.has-focus && root.enabled) : FocusBorder {
-        border-radius: i-background.border-radius;
-    }
-
     i-popup := PopupWindow {
         x: 0;
         // Position the popup so that the first element is over the popup.

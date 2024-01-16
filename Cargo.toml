@@ -23,8 +23,17 @@ windows-sys = { version = "0.52.0", features = [
 toml = "0.8.8"
 
 
+
+[profile.release]
+strip = true  # 自动从二进制文件中去除符号。
+lto = true
+codegen-units = 1
+panic = "abort"
+opt-level = "z" 
+
+
 [build-dependencies]
-slint-build = "1.0"
+slint-build = "1.3.2"
 
 [target.'cfg(target_os = "windows")'.build-dependencies]
 winresource = "0.1.17"

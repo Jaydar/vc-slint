@@ -6,6 +6,8 @@ import { MenuBorder, ListItem, FocusBorder } from "components.slint";
 import { ComboBoxBase } from "./common/combobox-color.slint";
 import { bridge } from "../../bridge.slint";
 
+import { ScrollView } from "std-widgets.slint";
+
 
 export component ColorComboBox {
     in property <[color]> model <=> i-base.model;
@@ -20,7 +22,7 @@ export component ColorComboBox {
     min-height: max(32px, i-layout.min-height);
     horizontal-stretch: 1;
     vertical-stretch: 0;
-    forward-focus: i-base;
+    
     
     
 
@@ -38,8 +40,15 @@ export component ColorComboBox {
             // i-icon.colorize: FluentPalette.text-tertiary;
         }
         hover when i-base.has-hover : {
-            i-background.background: FluentPalette.control-secondary;
+            // i-background.background: red;
         }
+
+        focused when i-text.has-focus : {
+            i-background.background: FluentPalette.control-input-active;
+            i-background.border-color: FluentPalette.border;
+            i-focus-border.background: FluentPalette.accent-background;
+        }
+
     ]
 
 
@@ -48,7 +57,7 @@ export component ColorComboBox {
     i-base := ComboBoxBase {
         width: 100%;
         height: 100%;
-
+        
         show-popup => {
             i-popup.show();
         }
@@ -74,10 +83,11 @@ export component ColorComboBox {
                 font-weight: FluentFontSettings.body.font-weight;
                 color: FluentPalette.control-foreground;
                 text: bridge.color-to-string(root.current-value);
-
+                selection-background-color: FluentPalette.selection-background;
+                selection-foreground-color: FluentPalette.accent-foreground;
                 edited() => {
-                    debug(bridge.string-to-color(i-text.text));
-                    i-icon.background = bridge.string-to-color(i-text.text);
+                    // i-icon.background = bridge.string-to-color(i-text.text);
+                    root.current-value = bridge.string_to_color(i-text.text);
                 }
             }
 
@@ -89,42 +99,50 @@ export component ColorComboBox {
                     border-color: FluentPalette.foreground;
                     padding: 1px;
                     border-width: 1px;
-
-                    // y: 2px;
-                    // background: bridge.string-to-color(i-text.text);
+                    background: root.current-value;
                 }    
             }
 
             
         }
+        i-focus-border := Rectangle {
+            x: parent.border-radius;
+            y: parent.height - self.height;
+            width: parent.width - 2 * parent.border-radius;
+            height: 2px;
+        }
     }
 
     // focus border
-    if (root.has-focus && root.enabled) : FocusBorder {
-        border-radius: i-background.border-radius;
-    }
+    // if (i-text.has-focus && root.enabled) : FocusBorder {
+    //     border-radius: i-background.border-radius;
+    // }
 
     i-popup := PopupWindow {
         x: 0;
         // Position the popup so that the first element is over the popup.
         // Ideally it should be so that the current element is over the popup.
-        y: root.height;
+        y: root.height+5px;
         width: root.width;
-
+        height: 160px;
         MenuBorder {
-            VerticalLayout {
-                padding: 4px;
-
-                for value[index] in root.model : Rectangle {
-                    height: root.height;
-                    width: root.width;
-                    background: value;
-                  
-                    i-touch-area := TouchArea {
-                        clicked => {
-                            i-base.select(index);
-                            i-text.text = bridge.color-to-string(root.current-value)
-                            // i-icon.background = bridge.string-to-color(i-text.text);
+            ScrollView {
+                width: root.width;
+                height: 160px;
+                vertical-stretch: 1;
+                VerticalLayout {
+                    // padding: 4px;
+                    spacing: 4px;
+                    for value[index] in root.model : Rectangle {
+                        height: root.height;
+                        width: root.width;
+                        background: value;
+                    
+                        i-touch-area := TouchArea {
+                            clicked => {
+                                i-base.select(index);
+                                i-text.text = bridge.color_to_string(root.current-value);
+                            }
                         }
                     }
                 }
